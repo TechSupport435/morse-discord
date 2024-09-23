@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secret Page</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet"> <!-- Added Google Fonts -->
+</head>
+<body>
+  <div class="wrapper">
+    <nav class="side-nav">
+      <ul>
+        <li><a href="index.html">Morse Code</a></li>
+        <li><a href="a.html">Secret</a></li>
+      </ul>
+    </nav>
+
+    <div class="content">
+      <h1>Secret Shhh</h1>
+      <p>Click the button or press "Enter" to send a secret message:</p>
+
+      <button id="secretBtn">SecretSauceSender</button>
+    </div>
+  </div>
+
+  <script>
+    const webhookURL3 = "https://discord.com/api/webhooks/1287551482127843408/Vl7-cuCGsELpSWhIAiFcK0JzGWf5JbggyZoVbsfRcTveFjviHOL6eg1PYSI35k7HDvL_"; // Third webhook
+
+    // Function to send the message
+    function sendSecretMessage() {
+      const message = "@Portoice \n hi";  // Added \n to simulate pressing Enter after the ping
+
+      fetch(webhookURL3, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          content: message,
+        }),
+      }).then(response => {
+        console.log('Secret message sent!');
+      });
+    }
+
+    // Event listener for button click
+    document.getElementById('secretBtn').addEventListener('click', sendSecretMessage);
+
+    // Event listener for Enter key press
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        sendSecretMessage();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* Overall page styles */
+body {
+    font-family: 'Cinzel', serif; /* Vintage-style serif font */
+    background-color: #e0e0e0; /* Light grey background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Wrapper for the layout */
+  .wrapper {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Side navigation bar */
+  .side-nav {
+    width: 200px;
+    background-color: #333;
+    padding-top: 20px;
+    position: fixed;
+    height: 100%;
+  }
+  
+  .side-nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .side-nav ul li {
+    margin: 20px 0;
+  }
+  
+  .side-nav ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
+  }
+  
+  .side-nav ul li a:hover {
+    background-color: #575757;
+  }
+  
+  /* Main content area */
+  .content {
+    margin-left: 200px;
+    padding: 40px;
+    flex-grow: 1;
+  }
+  
+  h1 {
+    font-family: 'Cinzel', serif; /* Old-style heading font */
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-family: 'Roboto Mono', monospace; /* Monospace font for the body text */
+    font-size: 1.2em;
+    color: #666;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    background-color: #6b8e23; /* Olive color for vintage effect */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #556b2f;
+  }
+  
+  #seriousOutput, #morseOutput {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 20px;
+    font-family: 'Roboto Mono', monospace;
+  }
+  
+  a {
+    color: #6b8e23;
+    text-decoration: none;
+    font-size: 1.1em;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

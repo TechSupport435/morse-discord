@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morse Code to Discord</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+    <nav class="side-nav">
+      <ul>
+        <li><a href="index.html">Morse Code</a></li>
+        <li><a href="a.html">Secret</a></li>
+      </ul>
+    </nav>
+
+    <div class="content">
+      <h1>Send Morse Code to Discord</h1>
+      <p>Type your message below and get a Morse code translation:</p>
+
+      <input type="text" id="messageInput" placeholder="Type your message here">
+      <button id="translateBtn">Translate to Morse Code</button>
+
+      <p>Translated Morse Code:</p>
+      <div id="morseOutput"></div>
+
+      <button id="sendDiscordBtn">Send to Discord (Webhook 1)</button>
+      <button id="sendDiscordBtn2">Send to Discord (Webhook 2)</button> <!-- New button for the second webhook -->
+    </div>
+  </div>
+
+  <script>
+    const webhookURL1 = "https://discord.com/api/webhooks/1185261253397073950/DbQwniHGrPox2kplFdn1DvDLCWZ8SYf7hN3e_z8QFRJWqrrlUJe5m6dNxibrfj5FCJZs"; // First webhook
+    const webhookURL2 = "https://discord.com/api/webhooks/1287550095956639884/aUXoWes9_lfxx5XbsXMmQChHiNmeNLdDoe1vI0qnKTYZ46SpPrb9xYu5LiqcUk036Thd"; // Second webhook
+
+    const morseTable = {
+      'A': ".-", 'B': "-...", 'C': "-.-.", 'D': "-..", 'E': ".", 'F': "..-.", 'G': "--.",
+      'H': "....", 'I': "..", 'J': ".---", 'K': "-.-", 'L': ".-..", 'M': "--", 'N': "-.",
+      'O': "---", 'P': ".--.", 'Q': "--.-", 'R': ".-.", 'S': "...", 'T': "-", 'U': "..-",
+      'V': "...-", 'W': ".--", 'X': "-..-", 'Y': "-.--", 'Z': "--..", '1': ".----", '2': "..---",
+      '3': "...--", '4': "....-", '5': ".....", '6': "-....", '7': "--...", '8': "---..", '9': "----.",
+      '0': "-----", ' ': " / "
+    };
+
+    document.getElementById('translateBtn').addEventListener('click', () => {
+      const inputMessage = document.getElementById('messageInput').value.toUpperCase();
+      let morseCode = "";
+
+      for (let char of inputMessage) {
+        if (morseTable[char]) {
+          morseCode += morseTable[char] + " ";
+        }
+      }
+
+      document.getElementById('morseOutput').textContent = morseCode.trim(); // Fixed the bug to avoid duplicate letters
+    });
+
+    document.getElementById('sendDiscordBtn').addEventListener('click', () => {
+      const morseCode = document.getElementById('morseOutput').textContent;
+
+      if (morseCode) {
+        fetch(webhookURL1, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            content: morseCode,
+          }),
+        }).then(response => {
+          console.log('Morse code sent to Discord (Webhook 1)!');
+        });
+      }
+    });
+
+    document.getElementById('sendDiscordBtn2').addEventListener('click', () => {
+      const morseCode = document.getElementById('morseOutput').textContent;
+
+      if (morseCode) {
+        fetch(webhookURL2, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            content: morseCode,
+          }),
+        }).then(response => {
+          console.log('Morse code sent to Discord (Webhook 2)!');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
